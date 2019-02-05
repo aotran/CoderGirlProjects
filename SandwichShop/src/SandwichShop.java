@@ -18,6 +18,7 @@ public class SandwichShop {
             out.println("The sales goal for " + foodItems[i] + " is " + salesGoals[i]);
             out.println("How many " + foodItems[i] + " were sold today?");
             int sales = keyboard.nextInt();
+            keyboard.skip("\n");
             if (sales >= salesGoals[i]) {
                 out.println("Made goal for " + foodItems[i]);
             } else {

@@ -27,10 +27,13 @@ public class GroceryList
         out.println("Now, please enter the price of each item.");
         out.print("How much does one " + item1 + " cost? ");
         float cost1 = keyboard.nextFloat();
+        keyboard.skip("\n");
         out.print("How much does one " + item2 + " cost? ");
         float cost2 = keyboard.nextFloat();
+        keyboard.skip("\n");
         out.print("How much does one " + item3 + " cost? ");
         float cost3 = keyboard.nextFloat();
+        keyboard.skip("\n");
 
         float totalCost = (quantity1 * cost1) + (quantity2 * cost2) + (quantity3 * cost3);
 
