@@ -16,17 +16,21 @@ public class Temperatures {
 
         out.println("Temperature Calculator");
         out.println("\n" + "The data provided are:");
+        out.print("      ");
+        for (int row = 0; row < daysOfWeek.length; row++) {
+            out.print(daysOfWeek[row] + " ");
+        }
+        out.print("\n");
         for (int row = 0; row < temperatures.length; row++) {
             out.print(timesOfDay[row] + ":");
             for (int col = 0; col < temperatures[0].length; col++) {
-                out.print(" " + temperatures[row][col]);
+                out.printf("%4d", temperatures[row][col]);
             }
             out.print("\n");
         }
 
         // calling methods for daily average
-        out.println("\n" + "Based on that data, the following are the average temperatures for the week."
-            + "\n");
+        out.println("\n" + "Based on that data, the following are the average temperatures for the week.");
         for (int day = 0; day < temperatures[0].length; day++) {
             out.println(daysOfWeek[day] + ": " + dailyAverage(temperatures, day));
         }
