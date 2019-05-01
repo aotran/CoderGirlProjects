@@ -1,28 +1,85 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
 public class Microblog {
 
-    private User user;
-    private Post[] blog = new Post[100];
+    private Scanner s;
+    private ArrayList<Post> blog = new ArrayList();
+    private ArrayList<User> userList = new ArrayList();
 
-    public Microblog(User user) {
-        this.user = user;
+    public Microblog(){
+        this.s = new Scanner(System.in);
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public Post[] getPosts() {
+    public ArrayList getAllPosts() {
         return blog;
     }
 
-    public void printBlog(Post[] blog) {
-        for(int i = 0; i < blog.length; i++) {
-            if(blog[i] == null) { break; }
-            else {
-                System.out.println(blog[i].getContent());
-                System.out.println("- " + blog[i].getBlogger().getUsername());
-            }
+    public void printAllPosts() {
+        for (Post post: blog) {
+            System.out.println(post.toString());
         }
     }
 
+    public void addPost(Post newPost) {
+        blog.add(newPost);
+    }
+
+    public ArrayList getUsers() { return userList; }
+
+    public void printUsers(ArrayList<User> userList) {
+        for (User user: userList) {
+            System.out.println(user.getUsername() + "\n");
+        }
+    }
+
+    public void addUser(User newUser) {
+        userList.add(newUser);
+    }
+
+    public Post createPostContent(User user) {
+        Post newPost = new Post();
+        newPost.setBlogger(user);
+        String checkContent;
+        do{
+            System.out.println("What would you like to post?");
+            newPost.setContent(s.nextLine());
+            System.out.println("Is this correct? If so, enter 'y'.");
+            newPost.toString();
+            checkContent = s.nextLine();
+        }while(!checkContent.toLowerCase().equals("y"));
+        User.allPosts.add(newPost);
+        blog.add(newPost);
+        return newPost;
+    }
+
+    public User createUser() {
+        User user = new User();
+        System.out.println("What is your username?");
+        user.setUsername(s.nextLine());
+        System.out.println("What is your first name?");
+        user.setRealFirstName(s.nextLine());
+        System.out.println("What is your last name?");
+        user.setRealLastName(s.nextLine());
+        System.out.println("What is your email?");
+        user.setEmail(s.nextLine());
+        userList.add(user);
+        return user;
+    }
+
+    public User checkUser() {
+        User currentUser = null;
+        do {
+            System.out.println("What username?");
+            String username = s.nextLine();
+            for (User user : userList) {
+                if (username.equals(user.getUsername())) {
+                    currentUser = user;
+                } else {
+                    System.out.println("That user does not exist.");
+                }
+            }
+        } while (currentUser == null);
+        return currentUser;
+    }
 }
